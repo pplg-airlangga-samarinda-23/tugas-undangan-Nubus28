@@ -9,23 +9,45 @@
 <body>
   <h1>Undangan Pernikahan</h1>
   <h2>Raden Mas Gibran dan Ratu Sari</h2>  <p>Dengan hormat, kami mengundang Anda untuk menghadiri acara sakral pernikahan kami.</p>
+<?php
 
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "undangan";
+
+$koneksi = new mysqli($host,$username,$password,$database);
+
+if ($koneksi->  connect_error){
+    print  "koneksi database gagal ";
+} else {
+    print "koneksi database berhasil";
+}
+$query = "select * from bukutamu";
+$hasil = $koneksi-> query($query);
+while ($baris = $hasil-> fetch_row()){
+    echo $baris[0] ."," .$baris[1]."," .$baris[2]."<br>";
+}
+$hasil ->free_result();
+$koneksi->close();
+
+?>
   <h3>Hari, Tanggal: 22-2-2029</h3>  <p>Waktu: Pukul 09.00 WIB</p>   <div class="carousel">
     <div class="carousel-inner">
       <img src="mempelai 1.jpg" alt="1" width="300" height="250">  <img src="mempelai 3.jpg" alt="3"width="300" height="250">
       <img src="mempelai 2.jpg" alt="2"width="300" height="250">
     </div>
-    <button class="prev">Sebelumnya</button> <button class="next">Selanjutnya</button>
   </div>
 
-  <p>Tempat: Gedung K-Link Tower</p>  <p>Lokasi: K-LINK TOWER, Jl. Gatot Subroto No.Kav. 59A, Kuningan Timur, Setiabudi, Jakarta Selatan.</p>
-
+  <h4> Gedung K-Link Tower</h4></p>  <p>Lokasi: K-LINK TOWER, Jl. Gatot Subroto No.Kav. 59A, Kuningan Timur, Setiabudi, Jakarta Selatan.</p>
+  <h5>Venue</h5>
   <img src="bg foto kawinan.jpg" alt="Gambar Tempat Acara">
   <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=106.83230727910998%2C-6.240839046554418%2C106.8348151445389%2C-6.23939123630972&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/-6.240115/106.833561">View Larger Map</a></small>
   
   <audio controls autoplay>
     <source src="Andra And The Backbone - Sempurna (Official Music Video).mp3" type="audio/mpeg">
   </audio>
+  
   <script src="script.js"></script>
 </body>
 </html>
